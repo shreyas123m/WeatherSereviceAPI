@@ -33,5 +33,5 @@ public class WeatherResource {
     public String testMethod () {
         return "hello";
     }
-    
+
 }
