@@ -4,48 +4,31 @@ import com.weather.demo.controller.WeatherResource;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class testing {
 
     private MockMvc mockMvc;
 
-    @InjectMocks
+    @Autowired
     private WeatherResource weatherResource;
 
     @Before
-    public void setUp() throws Exception {
-        mockMvc = MockMvcBuilders.standaloneSetup(weatherResource).build();
+    public void setUp() {
+        this.mockMvc = MockMvcBuilders.standaloneSetup(weatherResource).build();
     }
 
     @Test
     public void testWeatherController() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/testing")).andExpect(MockMvcResultMatchers.status().isOk());
+//        mockMvc.perform(MockMvcRequestBuilders.get("/getWeather/{zipCode}", 76051)).andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.get("/getWeather/{zipCode}", 76051).accept(MediaType.APPLICATION_JSON));
     }
 }
-
-
-/*@Autowired
-    private WebApplicationContext webApplicationContext;
-
-    WeatherResource weatherResource = new WeatherResource();
-    protected MockMvc mockMvc;
-
-    @Before
-    public void setup() {
-        //build mockMvc
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
-    @Test
-    public void testGetweather() {
-//        MvcResult mvcResult = mockMvc.perform(put("/some/uri/{foo}/{bar}", "foo", "bar"))
-//                .andExpect(status().isOk()).andReturn();
-//        WeatherDTO weather = weatherResource.getWeather("78717");
-//        Assert.assertNotNull(weather);
-    }*/
