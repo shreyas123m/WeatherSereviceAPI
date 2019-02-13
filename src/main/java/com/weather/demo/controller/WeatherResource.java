@@ -33,19 +33,5 @@ public class WeatherResource {
     public String testMethod () {
         return "hello";
     }
-
-    /*@RequestMapping("/getWeather")
-    public Weather testing() {
-
-        Main main = new Main();
-        main.setHumidity("220.00");
-        main.setPressure("220.00");
-        main.setTemp_max("220.00");
-        main.setTemp_min("220.00");
-
-        Weather weather = new Weather();
-//        weather.setMain(main);
-
-        return weather;
-    }*/
+    
 }
