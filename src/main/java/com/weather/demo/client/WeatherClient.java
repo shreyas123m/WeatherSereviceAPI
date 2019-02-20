@@ -16,7 +16,6 @@ public class WeatherClient {
 
     public Weather getWeather(String zip){
         RestTemplate restTemplate = new RestTemplate();
-//        final String response = restTemplate.getForObject("https://samples.openweathermap.org/data/2.5/forecast?zip="+zip+"&appid="+constants.getApiKey()+"", String.class);
         Weather response = restTemplate.getForObject(constants.getApiUrl() +zip+",us&appid="+constants.getApiKey()+"", Weather.class);
         return response;
     }
